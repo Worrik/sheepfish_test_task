@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check</title>
+    <style>
+        /* Define the CSS styles for the check */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .check {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .order-items {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-items th, .order-items td {
+            padding: 5px;
+            border-bottom: 1px solid #000;
+        }
+
+        .shipping-address {
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            margin-bottom: 20px;
+        }
+
+        .total-amount {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="check">
+        <div class="header">
+            <h2>Check</h2>
+        </div>
+        
+        <div class="order-details">
+            <p>Order ID: {{ id }}</p>
+            <p>Customer Name: {{ customer_name }}</p>
+            <p>Order Date: {{ order_date }}</p>
+        </div>
+
+        <table class="order-items">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_items %}
+                <tr>
+                    <td>{{ item.product_id }}</td>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="shipping-address">
+            <p>Shipping Address:</p>
+            <p>{{ shipping_address.street }}</p>
+            <p>{{ shipping_address.city }}, {{ shipping_address.state }} {{ shipping_address.postal_code }}</p>
+            <p>{{ shipping_address.country }}</p>
+        </div>
+
+        <div class="payment-method">
+            <p>Payment Method: {{ payment_method }}</p>
+        </div>
+
+        <div class="total-amount">
+            <p>Total Amount: ${{ total_amount }}</p>
+        </div>
+    </div>
+</body>
+</html>
